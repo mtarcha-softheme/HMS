@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Product Name="HMS"
+            Id="*"
+            UpgradeCode="7f93829e-f04e-40ec-b5fb-29673086a7f4"
+            Manufacturer="TarchaM"
+            Version="1.0.0.0"
+            Language="1033">
+    <Package InstallerVersion="200" Compressed="yes" Platform="x64"/>
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="INSTALLDIR" Name="HMS">
+        <Directory Id="TarchaM" Name="TarchaM">
+          <Directory Id="HMS" Name="HMS">
+            <Component Id="RegistryEntries" Guid="7f93829e-f04e-40ec-b5fb-29673086a7f8" Win64="yes">
+              <RegistryKey Root="HKLM" Key="SOFTWARE\HMS\Port" Action="createAndRemoveOnUninstall">
+                <RegistryValue Type="integer"
+                               Name="Port"
+                               Value="50000"
+                               KeyPath="yes"/>
+              </RegistryKey>
+            </Component>
+            <Component Id="HMS" Guid="7f93829e-f04e-40ec-b5fb-29673086a7f7">
+              <File Id="HomeManagementService"
+                    Name="HomeManagementService"
+                    Source="..\..\Server\bin\Debug\Server.Console.exe"
+                    KeyPath="yes"/>
+              <File Id="Common"
+                   Name="Common.dll"
+                   Source="..\..\Common\bin\Debug\Common.dll"
+                   KeyPath="no"/>
+              <ServiceInstall Id="ServiceInstaller"
+                              Type="ownProcess"
+                              Vital="yes"
+                              Name="HomeManagementService"
+                              DisplayName="HomeManagementSystem"
+                              Description="This is solution for managing remote host"
+                              Start="auto"
+                              Account="LocalSystem"
+                              ErrorControl="critical"
+                              Interactive="no" />
+              <ServiceControl Id="StartService"
+                              Start="install"
+                              Stop="both"
+                              Remove="uninstall"
+                              Name="HomeManagementService"
+                              Wait="no" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id="ProductFeature" Title="TarchaM:HMS" Level="1">
+      <ComponentRef Id="HMS"/>
+      <ComponentRef Id="RegistryEntries" />
+    </Feature>
+  </Product>
+</Wix>

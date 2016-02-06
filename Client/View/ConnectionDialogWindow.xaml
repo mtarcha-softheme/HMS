@@ -1,0 +1,70 @@
+﻿<Window x:Class="Client.View.ConnectionDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ConnectionDialogWindow" Height="400" Width="300">
+    <Border BorderBrush="Cyan" CornerRadius="5" BorderThickness="1">
+        <Grid Background="Gray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Foreground="Cyan"
+                           Content="Enter server's IP adress:"
+                           HorizontalContentAlignment="Left"
+                           Height="25"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Background="LightGray" 
+                     Text="{Binding ConnectionQuery.Ip}"
+                           HorizontalContentAlignment="Left"
+                           Height="25"/>
+            <Label Grid.Row="2" Grid.Column="1" Foreground="Cyan"
+                           Content="Enter port number:"
+                           HorizontalContentAlignment="Left"
+                           Height="25"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Background="LightGray"
+                           Text="{Binding ConnectionQuery.Port}"
+                           HorizontalContentAlignment="Left"
+                           Height="25"/>
+            <Label Grid.Row="4" Grid.Column="1" Foreground="Cyan"
+                           Content="Enter user name:"
+                           HorizontalContentAlignment="Left"
+                           Height="25"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Background="LightGray"
+                           Text="{Binding ConnectionQuery.UserName}"
+                           HorizontalContentAlignment="Left"
+                           Height="25"/>
+            <Label Grid.Row="6" Grid.Column="1" Foreground="Cyan"
+                           Content="Enter user password:"
+                           HorizontalContentAlignment="Left"
+                           Height="25"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Background="LightGray"
+                           Text="{Binding ConnectionQuery.Password}"
+                           HorizontalContentAlignment="Left"
+                           Height="25"/>
+
+
+            <Button Grid.Row="9" Grid.Column="1" Width="150" 
+                            Height="25" 
+                            Background="DimGray"
+                            BorderBrush="Cyan"
+                            Padding="1"
+                            HorizontalAlignment="Center" 
+                            Content="Connect"
+                            Command="{Binding Connect}"
+                            Click="btnConnect_Click"/>
+        </Grid>
+    </Border>
+</Window>

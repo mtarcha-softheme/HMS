@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="HMS" Language="1033" Version="1.0.0.0" Manufacturer="TarchaM" UpgradeCode="844e7109-2515-4ad5-868f-b6f3295df57e">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+		<Feature Id="ProductFeature" Title="HMSClientInstaller" Level="1">
+      <ComponentRef Id="ProductComponent" />
+      <ComponentRef Id="ApplicationShortcutDesktop" />
+		</Feature>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="DesktopFolder" Name="Desktop">
+        <Component Id="ApplicationShortcutDesktop" Guid="*">
+          <Shortcut Id="ApplicationDesktopShortcut"
+              Name="HMS"
+              Description="HMS Client"
+              Target="[MYAPPDIRPROPERTY]Client.exe"
+              WorkingDirectory="MYAPPDIRPROPERTY"/>
+          <RemoveFolder Id="DesktopFolder" On="uninstall"/>
+          <RegistryValue
+              Root="HKCU"
+              Key="Software/HMS"
+              Name="installed"
+              Type="integer"
+              Value="1"
+              KeyPath="yes"/>
+        </Component>
+      </Directory>
+
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="TArchaM" Name="TarchaM">
+          <Directory Id="MYAPPDIRPROPERTY" Name="HMS">
+            <Component Id="ProductComponent" Guid="b11556a2-e066-4393-af5c-9c9210187eb2">
+              <File Id='Client'
+                    Name="Client.exe"
+                    Source="..\..\Client\bin\Debug\Client.exe"
+                    KeyPath="yes"/>
+              <File Id="Common"
+                       Name="Common.dll"
+                       Source="..\..\Common\bin\Debug\Common.dll"
+                       KeyPath="no"/>
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Product>
+</Wix>

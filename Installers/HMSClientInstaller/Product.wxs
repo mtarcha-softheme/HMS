@@ -20,7 +20,7 @@
           <RemoveFolder Id="DesktopFolder" On="uninstall"/>
           <RegistryValue
               Root="HKCU"
-              Key="Software/HMS"
+              Key="Software\HMS"
               Name="installed"
               Type="integer"
               Value="1"
@@ -37,9 +37,9 @@
                     Source="..\..\Client\bin\Debug\Client.exe"
                     KeyPath="yes"/>
               <File Id="Common"
-                       Name="Common.dll"
-                       Source="..\..\Common\bin\Debug\Common.dll"
-                       KeyPath="no"/>
+                    Name="Common.dll"
+                    Source="..\..\Common\bin\Debug\Common.dll"
+                    KeyPath="no"/>
             </Component>
           </Directory>
         </Directory>
